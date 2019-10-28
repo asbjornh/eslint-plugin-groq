@@ -1,6 +1,6 @@
 {
   "name": "@asbjorn/eslint-plugin-groq",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Eslint plugin for GROQ queries",
   "author": "Asbjørn Hegdahl",
   "license": "MIT",

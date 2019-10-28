@@ -1,4 +1,4 @@
-const pluginName = "local";
+const pluginName = "@asbjorn/groq";
 
 module.exports = {
   rules: {
