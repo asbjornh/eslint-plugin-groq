@@ -1,0 +1,2 @@
+// NOTE: This file is imported by `eslint-plugin-local`, which in turn exposes whatever is exported from this file to `eslint` as a plugin called `local`. Useful for debugging the eslint plugin locally.
+module.exports = require("./index");

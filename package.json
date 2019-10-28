@@ -1,0 +1,32 @@
+{
+  "name": "@asbjorn/eslint-plugin-groq",
+  "version": "0.1.0",
+  "description": "Eslint plugin for GROQ queries",
+  "author": "Asbjørn Hegdahl",
+  "license": "MIT",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "rules",
+    "utils",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "debug": "eslint debug/index.js",
+    "lint": "eslint rules utils",
+    "test": "ava --verbose"
+  },
+  "dependencies": {
+    "eslint-ast-utils": "^1.1.0",
+    "groq-js": "^0.1.4"
+  },
+  "devDependencies": {
+    "ava": "^2.4.0",
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.5.1",
+    "eslint-ava-rule-tester": "^3.0.0",
+    "eslint-plugin-local": "^1.0.0",
+    "groq": "^0.142.0"
+  }
+}
