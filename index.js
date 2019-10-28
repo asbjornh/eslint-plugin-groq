@@ -9,7 +9,7 @@ module.exports = {
     recommended: {
       plugins: [pluginName],
       rules: {
-        [`${pluginName}/no-template-expressions`]: "off",
+        [`${pluginName}/no-template-expressions`]: "error",
         [`${pluginName}/no-syntax-errors`]: "error"
       }
     }
