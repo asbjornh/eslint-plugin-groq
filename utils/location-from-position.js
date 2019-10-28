@@ -3,17 +3,22 @@ function numberOfCharactersInLines(lines, numberOflines) {
 }
 
 module.exports = function locationFromPosition(
-  multiLineString,
+  multiLineString = "",
   characterPosition,
-  offsetLoc
+  start = { line: 0, column: 0 },
+  end = { line: 0, column: 0 }
 ) {
   const lines = multiLineString.split(/[\r\n]/).map(l => `${l}\n`);
+
+  if (!characterPosition) {
+    return { start, end };
+  }
 
   if (lines.length === 1) {
     // NOTE: characterPosition starts at 0 while ESTree loc starts at 1
     return {
-      line: offsetLoc.line,
-      column: offsetLoc.column + characterPosition + 1
+      line: start.line,
+      column: start.column + characterPosition + 1
     };
   }
 
@@ -24,5 +29,5 @@ module.exports = function locationFromPosition(
   const colIndex =
     characterPosition - numberOfCharactersInLines(lines, lineIndex);
 
-  return { line: offsetLoc.line + lineIndex, column: colIndex };
+  return { line: start.line + lineIndex, column: colIndex };
 };

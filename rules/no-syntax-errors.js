@@ -19,7 +19,8 @@ module.exports = {
           const loc = locationFromPosition(
             queryString,
             error.position,
-            queryNode.loc.start
+            queryNode.loc.start,
+            queryNode.loc.end
           );
           context.report({ loc, message: "GROQ syntax error" });
         }

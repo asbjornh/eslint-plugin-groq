@@ -1,6 +1,6 @@
 {
   "name": "@asbjorn/eslint-plugin-groq",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Eslint plugin for GROQ queries",
   "author": "Asbjørn Hegdahl",
   "license": "MIT",
@@ -14,7 +14,8 @@
     "rules",
     "utils",
     "LICENSE",
-    "README.md"
+    "README.md",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "debug": "eslint debug/index.js",
