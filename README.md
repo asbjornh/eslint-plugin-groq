@@ -58,7 +58,7 @@ groq`*[_type == { ]`;
 
 // Syntax error (not imported as `groq`)
 import hello from "groq";
-q = hello`*[_type == { ]`;
+const q = hello`*[_type == { ]`;
 ```
 
 #### Passing cases
@@ -69,15 +69,15 @@ q = hello`*[_type == { ]`;
 
 // Valid, tagged query
 import groq from "groq";
-q = groq`*[_type == 'movie']`;
+groq`*[_type == 'movie']`;
 
 // Query with syntax error tagged with `groq` not imported from `"groq"`
 import groq from "somewhere";
-q = groq`*[_type == {]`;
+groq`*[_type == {]`;
 
 // Query with syntax error and template expression
 import groq from "groq";
-q = groq`*[_${expression} == {]`;
+groq`*[_${expression} == {]`;
 ```
 
 ### no-template-expressions
@@ -93,7 +93,7 @@ groq`*[_type == ${type}]`;
 
 // Template expression (not imported as 'groq')
 import hello from "groq";
-q = hello`*[_type == ${type}]`;
+hello`*[_type == ${type}]`;
 ```
 
 #### Passing cases
@@ -101,12 +101,12 @@ q = hello`*[_type == ${type}]`;
 ```js
 // Tagged query without expressions
 import groq from "groq";
-q = groq`*[_type == 'movie']`;
+groq`*[_type == 'movie']`;
 
 // Non-tagged query with expression
 `*[_type == ${type}]`;
 
 // Query with expression tagged with `groq` not imported from `"groq"`
 import groq from "somewhere";
-q = groq`*[_type == ${type}]`;
+groq`*[_type == ${type}]`;
 ```
