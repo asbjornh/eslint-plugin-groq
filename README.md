@@ -8,7 +8,7 @@ npm install groq @asbjorn/eslint-plugin-groq
 
 ## Requirements
 
-This plugin uses [`groq`](https://www.npmjs.com/package/groq) to identify GROQ tagged template literals, and will not report anything for queries that aren't tagged with that package. Install it from [here](https://www.npmjs.com/package/groq).
+This plugin uses [`groq`](https://www.npmjs.com/package/groq) to identify GROQ tagged template literals, and will not report anything for queries that don't use `groq`. Install it from [here](https://www.npmjs.com/package/groq).
 
 ```js
 // Will not be linted:
@@ -58,7 +58,7 @@ groq`*[_type == { ]`;
 
 // Syntax error (not imported as `groq`)
 import hello from "groq";
-const q = hello`*[_type == { ]`;
+hello`*[_type == { ]`;
 ```
 
 #### Passing cases
