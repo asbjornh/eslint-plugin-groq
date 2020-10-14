@@ -8,7 +8,12 @@ npm install groq @asbjorn/eslint-plugin-groq
 
 ## Requirements
 
-This plugin uses [`groq`](https://www.npmjs.com/package/groq) to identify GROQ tagged template literals, and will not report anything for queries that don't use `groq`. Install it from [here](https://www.npmjs.com/package/groq).
+Only supports linting GROQ tagged template literals using these packages:
+
+* [`groq`](https://www.npmjs.com/package/groq)
+* [`@nuxtjs/sanity`](https://www.npmjs.com/package/@nuxtjs/sanity)
+
+Other GROQ imports will not be linted.
 
 ```js
 // Will not be linted:
@@ -20,6 +25,14 @@ const query = groq`*[_type == 'movies'][0..10]`;
 
 // Will also be linted:
 import anything from "groq";
+const query = anything`*[_type == 'movies'][0..10]`;
+
+// Will also be linted:
+import { groq } from "@nuxtjs/sanity";
+const query = groq`*[_type == 'movies'][0..10]`;
+
+// Will also be linted:
+import { groq as anything } from "@nuxtjs/sanity";
 const query = anything`*[_type == 'movies'][0..10]`;
 ```
 

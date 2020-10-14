@@ -18,6 +18,7 @@ const validCases = [
 
   // Tagged query without expressions
   "import groq from 'groq'; q = groq`*[_type == 'movie']`",
+  "import { groq } from '@nuxtjs/sanity'; q = groq`*[_type == 'movie']`",
 
   // Non-tagged query with expression
   "`*[_type == ${type}]`",
@@ -29,9 +30,11 @@ const validCases = [
 const invalidCases = [
   // Template expression
   'import groq from "groq"; groq`*[_type == ${type}]`',
+  'import { groq } from "@nuxtjs/sanity"; groq`*[_type == ${type}]`',
 
   // Template expression (not imported as 'groq')
   "import hello from 'groq'; q = hello`*[_type == ${type}]`",
+  "import { groq as hello } from '@nuxtjs/sanity'; q = hello`*[_type == ${type}]`",
 
   // Template expression (import all)
   "import * as groq from 'groq'; q = groq`*[_type == ${type}]`",
