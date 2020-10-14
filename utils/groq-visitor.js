@@ -1,5 +1,10 @@
 const astUtils = require("eslint-ast-utils");
 
+const knownGroqs = [
+  "groq",
+  "@nuxtjs/sanity"
+];
+
 /** Expects a function that returns a visitor object. This function is called with a function for checking whether a given tagged template expression is tagged with `groq` */
 module.exports = function groqVisitor(visitorFn) {
   // NOTE: Dictionary with identifier names as keys and import paths as values
@@ -9,7 +14,7 @@ module.exports = function groqVisitor(visitorFn) {
   const isGroqQuery = node =>
     node.type === "TaggedTemplateExpression" &&
     node.tag.type === "Identifier" &&
-    imports[node.tag.name] === "groq" &&
+    knownGroqs.includes(imports[node.tag.name]) &&
     node.quasi.type === "TemplateLiteral";
 
   return Object.assign(

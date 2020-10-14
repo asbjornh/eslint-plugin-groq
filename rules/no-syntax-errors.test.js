@@ -21,20 +21,28 @@ const validCases = [
 
   // Valid query
   "import groq from 'groq'; q = groq`*[_type == 'movie']`",
+  "import { groq } from '@nuxtjs/sanity'; q = groq`*[_type == 'movie']`",
 
-  // Invalid query tagged with `groq` not from the `groq` package
+  // Valid query (not imported as 'groq')
+  "import hello from 'groq'; q = hello`*[_type == 'movie']`",
+  "import { groq as hello } from '@nuxtjs/sanity'; q = hello`*[_type == 'movie']`",
+
+  // Invalid query tagged with `groq` not from either of the supported packages
   "import groq from 'somewhere'; q = groq`*[_type == {]`",
 
   // Invalid query with template expression
-  "import groq from 'groq'; q = groq`*[_${expression} == {]`"
+  "import groq from 'groq'; q = groq`*[_${expression} == {]`",
+  "import { groq } from '@nuxtjs/sanity'; q = groq`*[_${expression} == {]`",
 ];
 
 const invalidCases = [
   // Syntax error
   ['import groq from "groq"; groq`*[_type == { ]`', { line: 1, column: 44 }],
+  ['import { groq } from "@nuxtjs/sanity"; groq`*[_type == { ]`', { line: 1, column: 58 }],
 
   // Syntax error (not imported as 'groq')
   ["import hello from 'groq'; q = hello`*[_type == { ]`"],
+  ["import { groq as hello } from '@nuxtjs/sanity'; q = hello`*[_type == { ]`"],
 
   // Syntax error (import all)
   ["import * as groq from 'groq'; q = groq`*[_type == { ]`"],
@@ -45,6 +53,17 @@ const invalidCases = [
   // Multiline with syntax error
   [
     `import groq from "groq";
+groq\`*[_type == 'movie']{
+  name
+  year
+}
+\`;
+  `,
+    { line: 4, column: 3 }
+  ],
+
+  [
+    `import { groq } from "@nuxtjs/sanity";
 groq\`*[_type == 'movie']{
   name
   year
