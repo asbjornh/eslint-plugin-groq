@@ -29,9 +29,6 @@
     "eslint-ast-utils": "^1.1.0",
     "groq-js": "^0.1.4"
   },
-  "peerDependencies": {
-    "groq": "^0.142.0"
-  },
   "devDependencies": {
     "ava": "^2.4.0",
     "babel-eslint": "^10.0.3",

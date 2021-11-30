@@ -1,5 +1,6 @@
 ## 2.0.0
 
+- Remove `groq` from peerDependencies
 - Adds `groqs` option to `no-syntax-errors` and `no-template-expressions` rules to support a growing number of `groq` proxies
 - **BREAKING CHANGE**: Drops explicit support for `@nuxtjs/sanity`. Users of `@nuxtjs/sanity` must now configure this per rule instead:
 
