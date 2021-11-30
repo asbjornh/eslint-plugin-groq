@@ -6,7 +6,7 @@
   },
   "parser": "babel-eslint",
   "rules": {
-    "local/no-syntax-errors": "error",
-    "local/no-template-expressions": "error"
+    "local/no-syntax-errors": ["error", { "groqs": ["some-groq"] }],
+    "local/no-template-expressions": ["error", { "groqs": ["some-groq"] }]
   }
 }

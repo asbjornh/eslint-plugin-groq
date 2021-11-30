@@ -3,8 +3,9 @@ const locationFromPosition = require("../utils/location-from-position");
 const { parse } = require("groq-js");
 
 module.exports = {
-  create: function(context) {
-    return groqVisitor(isGroqQuery => ({
+  create: function (context) {
+    const [options] = context.options;
+    return groqVisitor(options)(isGroqQuery => ({
       TaggedTemplateExpression: node => {
         if (!isGroqQuery(node)) return;
         // NOTE: Bail if the template literal contains expressions because their values are hard to know statically.
@@ -24,7 +25,7 @@ module.exports = {
           );
           context.report({ loc, message: "GROQ syntax error" });
         }
-      }
+      },
     }));
-  }
+  },
 };

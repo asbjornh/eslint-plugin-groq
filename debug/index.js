@@ -1,4 +1,4 @@
-import groq from "groq";
+import groq from "some-groq";
 
 groq`
 *[_type == "movie"]{
@@ -11,3 +11,7 @@ groq`
 `;
 
 groq`*[_type == "movie"]{}[0..50]`;
+
+groq`*[_type == "movie"]{}0..50]`;
+
+groq`*[_type == "${"movie"}"]{}[0..50]`;

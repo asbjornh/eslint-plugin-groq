@@ -3,17 +3,14 @@
 Unofficial `eslint` plugin for [GROQ](https://www.sanity.io/docs/groq) queries.
 
 ```
-npm install groq @asbjorn/eslint-plugin-groq
+npm install @asbjorn/eslint-plugin-groq
 ```
 
 ## Requirements
 
-Only supports linting GROQ tagged template literals using these packages:
+This plugin uses [`groq`](https://www.npmjs.com/package/groq) to identify GROQ tagged template literals, and by default will not report anything for queries that don't use this package.
 
-* [`groq`](https://www.npmjs.com/package/groq)
-* [`@nuxtjs/sanity`](https://www.npmjs.com/package/@nuxtjs/sanity)
-
-Other GROQ imports will not be linted.
+If you use `groq` from a different library, such as `@nuxtjs/sanity` or `next-sanity`, see below for configuration.
 
 ```js
 // Will not be linted:
@@ -25,14 +22,6 @@ const query = groq`*[_type == 'movies'][0..10]`;
 
 // Will also be linted:
 import anything from "groq";
-const query = anything`*[_type == 'movies'][0..10]`;
-
-// Will also be linted:
-import { groq } from "@nuxtjs/sanity";
-const query = groq`*[_type == 'movies'][0..10]`;
-
-// Will also be linted:
-import { groq as anything } from "@nuxtjs/sanity";
 const query = anything`*[_type == 'movies'][0..10]`;
 ```
 
@@ -53,6 +42,26 @@ Or:
 ```json
 {
   "extends": ["plugin:@asbjorn/groq/recommended"]
+}
+```
+
+### Using `groq` from other libraries
+
+By default these eslint rules only check queries using the GROQ function exported from the `groq` npm package. If you use GROQ from a different library, such as `@nuxtjs/sanity` or `next-sanity`, you can pass an array of package names as config to the rules:
+
+```json
+{
+  "plugins": ["@asbjorn/groq"],
+  "rules": {
+    "@asbjorn/groq/no-syntax-errors": [
+      "error",
+      { "groqs": ["@nuxtjs/sanity"] }
+    ],
+    "@asbjorn/groq/no-template-expressions": [
+      "error",
+      { "groqs": ["@nuxtjs/sanity"] }
+    ]
+  }
 }
 ```
 
