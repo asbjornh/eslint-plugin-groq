@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "eslint-ast-utils": "^1.1.0",
-    "groq-js": "^0.1.4"
+    "groq-js": "^0.2.0"
   },
   "devDependencies": {
     "ava": "^2.4.0",
